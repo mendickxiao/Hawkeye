@@ -30,7 +30,7 @@ slot="header"
 
         <el-button v-else size="small" slot="header" @click="showInput">
 
-          添加</el-button>
+          Add</el-button>
 
   </el-card>
 
