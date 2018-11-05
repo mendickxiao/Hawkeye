@@ -82,9 +82,9 @@ class Leakage(Resource):
                 args.get('limit') * (args.get('from') - 1)))
         total = leakage_col.count(filters)
         if total:
-            msg = '共 {} 条记录'.format(total)
+            msg = 'Total {} records'.format(total)
         else:
-            msg = '暂无数据'
+            msg = 'No data'
         data = {
             'msg': msg,
             'status': 200,
@@ -115,7 +115,7 @@ class Leakage(Resource):
             for leakage in leakage_col.find({'project': args.get('project')}):
                 leakage_col.update({'_id': leakage['_id']}, {
                     '$set': {'security': 1, 'ignore': 1, 'desc': desc}})
-        return jsonify({'status': 201, 'msg': '处理成功', 'result': []})
+        return jsonify({'status': 201, 'msg': 'Process Successfully', 'result': []})
 
 
 api.add_resource(Leakage, '/api/leakage')
@@ -144,7 +144,7 @@ class Statistics(Resource):
                 {'$group': {'_id': '${}'.format(by), 'value': {'$sum': 0}}},
             ]
             results = list(leakage_col.aggregate(pipeline))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': results})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': results})
 
 
 api.add_resource(Statistics, '/api/statistics')
@@ -156,7 +156,7 @@ class LeakageCode(Resource):
             {'_id': leakage_id}, {'_id': 0, 'code': 1}))
         affect_assets = get_affect_assets(
             base64.b64decode(results[0].get("code").encode(encoding='utf-8'), validate=True))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': results, 'affect': affect_assets})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': results, 'affect': affect_assets})
 
 
 def get_affect_assets(code):
@@ -180,7 +180,7 @@ class LeakageInfo(Resource):
     def get(self, leakage_id):
         results = list(leakage_col.find(
             {'_id': leakage_id}, {'_id': 0, 'code': 0}))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': results})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': results})
 
 
 api.add_resource(LeakageCode, '/api/leakage/<leakage_id>/code')
@@ -190,7 +190,7 @@ api.add_resource(LeakageInfo, '/api/leakage/<leakage_id>/info')
 class Blacklist(Resource):
     def get(self):
         blacklists = list(blacklist_col.find({}, {'_id': 0}))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': blacklists})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': blacklists})
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -201,7 +201,7 @@ class Blacklist(Resource):
         blacklist_col.save({'_id': md5(keyword), 'keyword': keyword})
         blacklists = list(blacklist_col.find({}, {'_id': 0}))
 
-        return jsonify({'status': 201, 'msg': '添加成功', 'result': blacklists})
+        return jsonify({'status': 201, 'msg': 'Add completed', 'result': blacklists})
 
     def delete(self):
         parser = reqparse.RequestParser()
@@ -210,7 +210,7 @@ class Blacklist(Resource):
         blacklist_col.delete_many({'keyword': args.get('keyword')})
         blacklists = list(blacklist_col.find({}, {'_id': 0}))
 
-        return jsonify({'status': 404, 'msg': '删除成功', 'result': blacklists})
+        return jsonify({'status': 404, 'msg': 'Delete completed', 'result': blacklists})
 
 
 api.add_resource(Blacklist, '/api/setting/blacklist')
@@ -219,7 +219,7 @@ api.add_resource(Blacklist, '/api/setting/blacklist')
 class Notice(Resource):
     def get(self):
         notices = list(notice_col.find({}, {'_id': 0}))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': notices})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': notices})
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -229,7 +229,7 @@ class Notice(Resource):
         keyword = keyword.strip().replace(' ', '')
         notice_col.save({'_id': md5(keyword), 'keyword': keyword})
         notices = list(notice_col.find({}, {'_id': 0}))
-        return jsonify({'status': 201, 'msg': '添加成功', 'result': notices})
+        return jsonify({'status': 201, 'msg': 'Add completed', 'result': notices})
 
     def delete(self):
         parser = reqparse.RequestParser()
@@ -238,7 +238,7 @@ class Notice(Resource):
         notice_col.delete_many({'keyword': args.get('keyword')})
         notices = list(notice_col.find({}, {'_id': 0}))
 
-        return jsonify({'status': 404, 'msg': '删除成功', 'result': notices})
+        return jsonify({'status': 404, 'msg': 'Delete completed', 'result': notices})
 
 
 api.add_resource(Notice, '/api/setting/notice')
@@ -247,7 +247,7 @@ api.add_resource(Notice, '/api/setting/notice')
 class Query(Resource):
     def get(self):
         querys = list(query_col.find({}).sort('enabled', -1))
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': querys})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': querys})
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -258,7 +258,7 @@ class Query(Resource):
         query = args
         status_code = insert(query)
         querys = list(query_col.find({}).sort('enabled', -1))
-        return jsonify({'status': status_code, 'msg': '添加/更新成功', 'result': querys})
+        return jsonify({'status': status_code, 'msg': 'Add/Update completed', 'result': querys})
 
     def delete(self):
         parser = reqparse.RequestParser()
@@ -268,7 +268,7 @@ class Query(Resource):
         query_col.delete_many({'_id': args.get('_id')})
         leakage_col.delete_many({'tag': args.get('tag')})
         querys = list(query_col.find({}))
-        return jsonify({'status': 404, 'msg': '删除成功', 'result': querys})
+        return jsonify({'status': 404, 'msg': 'Delete completed', 'result': querys})
 
 
 api.add_resource(Query, '/api/setting/query')
@@ -276,7 +276,7 @@ api.add_resource(Query, '/api/setting/query')
 
 class Cron(Resource):
     def get(self):
-        return jsonify({'status': 200, 'msg': '获取信息成功', 'result': read_cron()})
+        return jsonify({'status': 200, 'msg': 'Get information successfully', 'result': read_cron()})
 
     def put(self):
         parser = reqparse.RequestParser()
@@ -284,7 +284,7 @@ class Cron(Resource):
         parser.add_argument('page', type=int, help='')
         args = parser.parse_args()
         write_cron(args.get('every'), int(args.get('page') + 1))
-        return jsonify({'status': 200, 'msg': '修改成功', 'result': read_cron()})
+        return jsonify({'status': 200, 'msg': 'Modify completed', 'result': read_cron()})
 
 
 api.add_resource(Cron, '/api/setting/cron')
