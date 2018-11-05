@@ -27,7 +27,7 @@
       @blur="handleInputNoticeConfirm"
     >
     </el-input>
-    <el-button v-else size="small" slot="header" @click="showInput">添加</el-button>
+    <el-button v-else size="small" slot="header" @click="showInput">Add</el-button>
   </el-card>
 
 
