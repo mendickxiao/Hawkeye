@@ -24,7 +24,7 @@
           <el-button-group>
 
             <el-button round size="small" v-on:click="handleOpen('/#/view/leakage/'+result._id)">
-              详情
+              Details
             </el-button>
 
             <el-button round size="small" v-on:click="handleOpen('https://github.com/'+result.project+'/commits')">
@@ -55,7 +55,7 @@
     name: "search-results",
     filters: {
       // timeago(val) {
-      //   return timeagoInstance.format(val, 'zh_CN')
+      //   return timeagoInstance.format(val, 'en_US')
       // },
       b64decode(val) {
         return Base64.decode(val)

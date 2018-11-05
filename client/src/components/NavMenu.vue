@@ -12,13 +12,13 @@
       height: 1.5em;">
           <use xlink:href="#icon-github"></use>
         </svg>
-        GitHub 监控平台
+        GitHub monitoring platform
       </el-menu-item>
       <el-menu-item index="/">
-        概览
+        Overview
       </el-menu-item>
       <el-menu-item index="/setting">
-        配置
+        Setting
       </el-menu-item>
 
     </el-menu>

@@ -8,24 +8,24 @@
             </svg>
                 <a rel="noopener noreferrer"
                    href="https://github.com/search/advanced"
-                   target="_blank">搜索语法</a>
+                   target="_blank">Search grammar</a>
               </span>
         <el-button style="float: right;" type="info" @click="dialogFormVisible = true">
           <i class="el-icon-plus"></i>
         </el-button>
-        <el-dialog title="添加" :visible.sync="dialogFormVisible" v-model="dialogFormVisible">
+        <el-dialog title="Add" :visible.sync="dialogFormVisible" v-model="dialogFormVisible">
           <el-form :model="form">
-            <el-tooltip content="若存在，会覆盖已有值" placement="right">
-              <el-form-item label="名称" :label-width="formLabelWidth">
+            <el-tooltip content="If it exists, it will overwrite the existing value." placement="right">
+              <el-form-item label="Name" :label-width="formLabelWidth">
                 <el-input v-model="form.tag" auto-complete="off"></el-input>
               </el-form-item>
             </el-tooltip>
-            <el-tooltip content="熟悉搜索语法可以提高监控效率: OR/AND/NOT" placement="right">
-              <el-form-item label="关键字" :label-width="formLabelWidth">
+            <el-tooltip content="Familiarity with search grammar can improve monitoring efficiency: OR/AND/NOT" placement="right">
+              <el-form-item label="Keyword" :label-width="formLabelWidth">
                 <el-input v-model="form.keyword" auto-complete="off"></el-input>
               </el-form-item>
             </el-tooltip>
-            <el-form-item label="开启/关闭" :label-width="formLabelWidth">
+            <el-form-item label="Open/Close" :label-width="formLabelWidth">
 
               <el-switch
                 v-model="form.enabled"
@@ -35,14 +35,14 @@
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="handleAddQuery(form)">确 定</el-button>
+            <el-button @click="dialogFormVisible = false">Cancel</el-button>
+            <el-button type="primary" @click="handleAddQuery(form)">Confirmed</el-button>
           </div>
         </el-dialog>
       </div>
 
       <el-table :data="querys" :stripe="true">
-        <el-table-column label="名称">
+        <el-table-column label="Name">
           <template slot-scope="scope">
             <router-link :to="'/view/tag/'+scope.row.tag">
               {{scope.row.tag}}
@@ -50,7 +50,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="状态"
+          label="Status"
           width=100
           prop="enabled"
           sortable
@@ -65,7 +65,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="关键字"
+          label="keyword"
           width=400
           show-overflow-tooltip
         >
@@ -77,7 +77,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="最后抓取时间"
+          label="Last crawl time"
           prop="last"
           width=150
           sortable
@@ -91,7 +91,7 @@
 
 
         <el-table-column
-          label="操作"
+          label="Action"
           fixed="right"
           width=200
 
@@ -104,13 +104,13 @@
               <el-button
                 size="mini"
                 plain
-                @click="handleEdit(scope.$index, scope.row)">编辑
+                @click="handleEdit(scope.$index, scope.row)">Edit
               </el-button>
               <el-button
                 size="mini"
                 type="danger"
                 plain
-                @click="handleDeleteQuery(scope.$index, scope.row)">删除
+                @click="handleDeleteQuery(scope.$index, scope.row)">Delete
               </el-button>
               <el-button v-if="scope.row.status===0" size="mini"
                          plain
@@ -150,7 +150,7 @@
     },
     filters: {
       timeago(val) {
-        return timeagoInstance.format(val, 'zh_CN')
+        return timeagoInstance.format(val, 'en_US')
       }
     },
     methods: {
@@ -169,7 +169,7 @@
           });
       },
       handleSpiderResult(result) {
-        const last = timeagoInstance.format(result.last * 1000, "zh_CN");
+        const last = timeagoInstance.format(result.last * 1000, "en_US");
         if (result.status > -1) {
           this.$message.success(last + result.reason);
         } else {

@@ -8,7 +8,7 @@
                        size="small"
                        filterable
                        clearable
-                       placeholder="请选择关键字"
+                       placeholder="Please select the keywords"
                        @change="handleFilter"
                        @focus="fetchStatisticsData('tag')"
             >
@@ -23,7 +23,7 @@
                        size="small"
                        filterable
                        clearable
-                       placeholder="请选择语言"
+                       placeholder="Please select language"
                        @change="handleFilter"
                        @focus="fetchStatisticsData('language')"
             >
@@ -35,17 +35,17 @@
               </el-option>
             </el-select>
             <el-radio-group v-model="filters.status" @change="handleFilter" size="small">
-              <el-radio-button :label="{}">不限</el-radio-button>
+              <el-radio-button :label="{}">No limit</el-radio-button>
               <el-radio-button :label="{security: 0,desc: {
                           $exists: false}}">
-                <i class="el-icon-time"></i> 待处理
+                <i class="el-icon-time"></i> To be verify
               </el-radio-button>
               <el-radio-button :label="{security: 0, desc: {
                           $exists: true}}">
-                <i class="el-icon-star-on"></i> 已处理
+                <i class="el-icon-star-on"></i> Confirmed
               </el-radio-button>
               <el-radio-button :label="{security: 1}">
-                <i class="el-icon-check"></i> 归档
+                <i class="el-icon-check"></i> Archived
               </el-radio-button>
             </el-radio-group>
             <div class="page-top" v-if="leakagesData">
@@ -163,7 +163,7 @@
     components: {SearchResults},
     filters: {
       timeago(val) {
-        return timeagoInstance.format(val, 'zh_CN')
+        return timeagoInstance.format(val, 'en_US')
       },
       b64decode(val) {
         return Base64.decode(val)

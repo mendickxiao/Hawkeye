@@ -5,7 +5,7 @@
           <div class="clearfix">
             <span style="line-height: 36px;">
               <i class="el-icon-share" style="margin-right: 4px;"></i>
-              <a :href="leakageInfo.link" target="_blank">可疑项目</a>
+              <a :href="leakageInfo.link" target="_blank">Suspicious item</a>
             </span>
             <a
               :href="'https://github.com/'+leakageInfo.project+'/search?utf8=✓&q=pass OR password OR passwd OR pwd OR smtp OR database'"
@@ -23,27 +23,27 @@
         <div class="card-panel">
           <div style="padding: 15px;">
             <el-form :model="form">
-              <el-form-item label="是否安全">
+              <el-form-item label="Is it safe?">
                 <el-radio-group v-model="form.security">
 
-                  <el-radio :label="1">安全</el-radio>
-                  <el-radio :label="0">涉密</el-radio>
+                  <el-radio :label="1">Safe</el-radio>
+                  <el-radio :label="0">Secret</el-radio>
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="忽略仓库">
+              <el-form-item label="Ignore repository">
                 <el-radio-group v-model="form.ignore">
 
-                  <el-radio :label="1">忽略</el-radio>
-                  <el-radio :label="0">监控</el-radio>
+                  <el-radio :label="1">Ignored</el-radio>
+                  <el-radio :label="0">Monitored</el-radio>
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="备注">
+              <el-form-item label="Comment">
 
-                <el-input v-model="form.desc" type="textarea" placeholder="请输入..."></el-input>
+                <el-input v-model="form.desc" type="textarea" placeholder="Please input ..."></el-input>
 
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="dealLeakage(form)">确认</el-button>
+                <el-button type="primary" @click="dealLeakage(form)">Confirmed</el-button>
               </el-form-item>
             </el-form>
           </div>

@@ -1,8 +1,8 @@
 <template>
 
   <el-card shadow="never" class="item">
-   
- <el-tooltip content="邮箱格式：username@domain.com" placement="bottom-end">
+
+ <el-tooltip content="Email formati: username@domain.com" placement="bottom-end">
       <svg class="icon" aria-hidden="true" style="font-size: 20px;">
               <use xlink:href="#icon-tip"></use>
             </svg>
@@ -27,9 +27,9 @@ slot="header"
       @blur="handleInputNoticeConfirm"
     >
     </el-input>
-    
+
         <el-button v-else size="small" slot="header" @click="showInput">
-          
+
           添加</el-button>
 
   </el-card>

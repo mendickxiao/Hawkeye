@@ -1,7 +1,7 @@
 <template>
 
   <el-card shadow="never" class="item">
-    <el-tooltip content="项目名称若包含黑名单关键字，则不会抓取" placement="bottom-end">
+    <el-tooltip content="If the project name contains a blacklist keyword, it will not be crawled." placement="bottom-end">
       <svg class="icon" aria-hidden="true" style="font-size: 20px;">
               <use xlink:href="#icon-tip"></use>
             </svg>

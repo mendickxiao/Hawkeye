@@ -2,7 +2,7 @@
   <div>
 
     <el-card shadow="never">
-            <span slot="header">时间间隔          <el-button style="float:right" @click="handleCronSet">确认</el-button></span>
+            <span slot="header">time interval          <el-button style="float:right" @click="handleCronSet">Confirmed</el-button></span>
       <el-slider
         style="margin-left:20px"
 
@@ -17,8 +17,8 @@
 
     <el-card shadow="never">
         <span slot="header">
-          爬取页数
-                    <el-button style="float:right" @click="handleCronSet">确认</el-button>
+          Crawl page number
+                    <el-button style="float:right" @click="handleCronSet">Confirmed</el-button>
 
         </span>
 
